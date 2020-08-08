@@ -1,7 +1,9 @@
 import 'question.dart';
 
 class QuizBrain {
-  List<Question> questionBank = [
+  int _questionNumber = 0;
+
+  List<Question> _questionBank = [
     Question('Some cats are actually allergic to humans', true),
     Question('You can lead a cow down stairs but not up stairs.', false),
     Question('Approximately one quarter of human bones are in the feet.', true),
@@ -28,4 +30,30 @@ class QuizBrain {
         'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
         true),
   ];
+
+  void nextQuestion() {
+    if (_questionNumber < _questionBank.length - 1) {
+      _questionNumber++;
+    }
+  }
+
+  //Method to get questions
+  String getQuestionText() {
+    return _questionBank[_questionNumber].questionText;
+  }
+
+  //Method to check if answer is true/false.. You can use one method to Check both
+  bool getCorrectAnswer() {
+    return _questionBank[_questionNumber].questionAnswer;
+  }
+
+  //Method to check for true
+//  bool getAnswerTrue(int questionNumber) {
+//    return _questionBank[questionNumber].questionAnswer;
+//  }
+//
+//  //Method to check for false
+//  bool getAnswerFalse(int questionNumber) {
+//    return _questionBank[questionNumber].questionAnswer;
+//  }
 }
