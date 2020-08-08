@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'quiz_brain.dart';
 
+QuizBrain quizBrain = QuizBrain();
 void main() => runApp(Quizzler());
 
 class Quizzler extends StatelessWidget {
@@ -28,11 +30,15 @@ class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
   //List for questions
-  List<String> questions = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.'
-  ];
+//  List<String> questions = [
+//    'You can lead a cow down stairs but not up stairs.',
+//    'Approximately one quarter of human bones are in the feet.',
+//    'A slug\'s blood is green.'
+//  ];
+//  Question q1 = Question(
+//    q: 'You can lead a cow down stairs but not up stairs.',
+//    a: false,
+//  );
 
   int questionNumber = 0;
   List<bool> answers = [false, true, true];
@@ -48,7 +54,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNumber],
+                quizBrain.questionBank[questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -72,7 +78,8 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer = answers[questionNumber];
+                bool correctAnswer =
+                    quizBrain.questionBank[questionNumber].questionAnswer;
                 if (correctAnswer == true) {
                   print('User got it right');
                 } else {
@@ -98,7 +105,8 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer = answers[questionNumber];
+                bool correctAnswer =
+                    quizBrain.questionBank[questionNumber].questionAnswer;
                 if (correctAnswer == false) {
                   print('User got it right');
                 } else {
